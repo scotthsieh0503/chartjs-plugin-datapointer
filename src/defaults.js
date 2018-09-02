@@ -4,5 +4,7 @@ export default {
   'data': [],
   'fontSize': 15,
   'fontFamily': 'Arial',
-  'pointer': '*'
+  'pointer': '*',
+  'label': '',
+  'color': ['yellow', 'green', 'red']
 }

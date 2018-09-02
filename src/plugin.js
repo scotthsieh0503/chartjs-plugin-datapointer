@@ -1,38 +1,44 @@
 'use strict'
 
 const plugin = {
-  id: 'chartjs-data-pointer',
+  id: 'dataPointer',
   beforeInit: function (chart, options) {
     if (!options.enable) {
       return null
     }
-    console.log(options)
   },
   afterDraw: function (chart) {
-    if (chart.chart.config.options.plugins.dataPointer) {
-      let ctx = chart.chart.ctx
-      let options = chart.chart.config.options.plugins.dataPointer
-      let data = options.data
-      let fontSize = options.fontSize
-      let fontFamily = options.fontFamily
-      let pointer = options.pointer
-      let font = String()
-      font = font.concat(fontSize, 'px', ' ', fontFamily)
+    let ctx = chart.chart.ctx
+    let options = chart.chart.config.options.plugins.dataPointer
+    let data = options.data
+    let fontSize = options.fontSize
+    let fontFamily = options.fontFamily
+    let pointer = options.pointer
+    let color = options.color
+    let font = String()
+    font = font.concat(fontSize, 'px', ' ', fontFamily)
 
-      let xaxis = chart.scales['x-axis-0']
-      let yaxis = chart.scales['y-axis-0']
-      console.log(chart)
-      ctx.save()
+    let xaxis = chart.scales['x-axis-0']
+    let yaxis = chart.scales['y-axis-0']
+    ctx.save()
 
-      data.forEach(function (element, index, array) {
-        let centerX = xaxis.getPixelForValue(element)
-        let centerY = yaxis.getPixelForTick(index) - yaxis.options.barThickness / 2 - fontSize / 2
-        ctx.font = font
-        ctx.fillText(pointer, centerX, centerY)
-      })
+    data.forEach(function (element, index, array) {
+      let centerX = xaxis.getPixelForValue(element)
+      let centerY = yaxis.getPixelForTick(index) - (yaxis.options.barThickness / 2) - (fontSize / 2)
 
-      ctx.restore()
-    }
+      if (Array.isArray(color)) {
+        ctx.fillStyle = color[index]
+      } else {
+        ctx.fillStyle = color
+      }
+
+      ctx.font = font
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+      ctx.fillText(pointer, centerX, centerY)
+    })
+
+    ctx.restore()
   }
 }
 
