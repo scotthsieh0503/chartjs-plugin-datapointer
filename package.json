@@ -5,7 +5,8 @@
   "main": "dist/chart-js-pointer-plugin-bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --content-base dist"
+    "start": "webpack-dev-server --content-base dist",
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -23,15 +24,15 @@
   },
   "homepage": "https://github.com/scotthsieh0503/chart-js-pointer-plugin#readme",
   "devDependencies": {
-    "babel-core": "^6.26.3",
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
     "babel-loader": "^8.0.0",
-    "babel-preset-env": "^1.7.0",
+    "chart.js": "^2.7.2",
     "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.17.1",
+    "webpack-bundle-analyzer": "^2.13.1",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.7"
   },
-  "dependencies": {
-    "chart.js": "^2.7.2"
-  }
+  "dependencies": {}
 }
