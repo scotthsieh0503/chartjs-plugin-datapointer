@@ -1,15 +1,13 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
-
-<head>
-  <title>Stacked Bar Chart</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
-  <script src="chart-js-pointer-plugin.js"></script>
+  <head>
+    <meta charset="UTF-8">
+    <title>Webpack App</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+    <script type="text/javascript" src="chart-js-pointer-plugin.js"></script>
 </head>
-
 <body>
   <div style="width: 100%">
     <canvas id="canvas"></canvas>
@@ -18,12 +16,6 @@
     var barChartData = {
       labels: ["Course A", "Course B", "Course C"],
       datasets: [
-     		{
-          label: 'Clifford',
-          data: ["50", "30", "60"],
-          type: 'bubble',
-          fill: true
-				},
       {
         label: 'C',
         backgroundColor: "#aad700",
@@ -45,51 +37,21 @@
       }]
     };
 
-
-
-  //Create horizontalBar plug-in for ChartJS
-  var originalLineDraw = Chart.controllers.horizontalBar.prototype.draw;
-  Chart.helpers.extend(Chart.controllers.horizontalBar.prototype, {
-
-      draw: function () {
-          originalLineDraw.apply(this, arguments);
-
-
-          var chart = this.chart;
-          var ctx = chart.chart.ctx;
-
-          var series2 = chart.chart.config.data.datasets[0];
-          var xaxis = chart.scales['x-axis-0'];
-					var yaxis = chart.scales['y-axis-0'];
-          var fontSize = 15;
-       		console.log(chart);
-
-          if (series2) {
- 							 ctx.save();
-
-               series2.data.forEach( function(element, index, array) {
-
-
-               var centerX = xaxis.getPixelForValue(element);
-               var centerY = yaxis.getPixelForTick(index)-yaxis.options.barThickness/2 - fontSize/2;
-							 ctx.font='15px FontAwesome';
-               ctx.fillText('\uf063',centerX, centerY);
-              });
-
-
-
-              ctx.restore();
-          }
-      }
-  });
-
-
     window.onload = function() {
       var ctx = document.getElementById("canvas").getContext("2d");
       window.myBar = new Chart(ctx, {
         type: 'horizontalBar',
         data: barChartData,
         options: {
+        	plugins: {
+          	dataPointer: {
+              fontSize: 14,
+              fontFamily: 'FontAwesome',
+              pointer: '\uf063',
+              label: 'Clifford',
+              data: ["50", "30", "60"],
+						}
+            },
           title: {
             display: true,
             text: "Chart.js Bar Chart - Stacked"

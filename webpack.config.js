@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
@@ -16,12 +15,14 @@ module.exports = {
            {
                test: /\.(js)$/,
                exclude: /(node_modules|bower_components)/,
-               loader: 'babel-loader'
+               use: [
+                 'babel-loader',
+                  'eslint-loader'
+               ]
            }
        ]
    },
   plugins: [
-    new HtmlWebpackPlugin(),
      new webpack.IgnorePlugin(/moment/)
   ]
 };
