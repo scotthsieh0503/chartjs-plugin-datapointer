@@ -8,6 +8,7 @@ ChartJS plugin that allows us to add pointer series of data to bar charts
 
 ```javascript
 new Chart(ctx, {
+enable: true,
 type: 'horizontalBar',
 data: barChartData,
 options: {
