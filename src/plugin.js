@@ -2,11 +2,6 @@
 
 const plugin = {
   id: 'dataPointer',
-  beforeInit: function (chart, options) {
-    if (!options.enable) {
-      return null
-    }
-  },
   afterDraw: function (chart) {
     let ctx = chart.chart.ctx
     let options = chart.chart.config.options.plugins.dataPointer
@@ -24,6 +19,7 @@ const plugin = {
       let yaxis = chart.scales['y-axis-0']
       ctx.save()
 
+      // draw pointer
       data.forEach(function (element, index, array) {
         let centerX = xaxis.getPixelForValue(element)
         let centerY = yaxis.getPixelForTick(index) - (yaxis.options.barThickness / 2) - (fontSize / 2)
