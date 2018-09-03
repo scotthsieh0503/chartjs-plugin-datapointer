@@ -2,7 +2,7 @@
   "name": "chartjs-plugin-datapointer",
   "version": "0.1.1",
   "description": "allows chartjs to add arrow pointing to specific data points",
-  "main": "dist/chart-js-pointer-plugin-bundle.js",
+  "main": "dist/chartjs-plugin-datapointer.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "webpack-dev-server --content-base dist",
@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/scotthsieh0503/chart-js-pointer-plugin.git"
+    "url": "git+https://github.com/scotthsieh0503/chartjs-plugin-datapointer"
   },
   "keywords": [
     "chartjs",
@@ -20,9 +20,9 @@
   "author": "Scott Hsieh",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/scotthsieh0503/chart-js-pointer-plugin/issues"
+    "url": "https://github.com/scotthsieh0503/chartjs-plugin-datapointer/issues"
   },
-  "homepage": "https://github.com/scotthsieh0503/chart-js-pointer-plugin#readme",
+  "homepage": "https://github.com/scotthsieh0503/chartjs-plugin-datapointer#readme",
   "devDependencies": {
     "@babel/core": "^7.0.0",
     "@babel/preset-env": "^7.0.0",
