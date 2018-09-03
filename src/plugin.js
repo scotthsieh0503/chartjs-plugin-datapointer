@@ -2,13 +2,11 @@
 
 const plugin = {
   id: 'dataPointer',
-  afterDraw: function (chart) {
+  beforeDraw: function (chart) {
     if (chart.chart.config.options.plugins.dataPointer.enable) {
       this.drawPointers(chart)
-      this.drawPointerLegend(chart)
     }
   },
-
   drawPointers: function (chart) {
     let ctx = chart.ctx
     let options = chart.chart.config.options.plugins.dataPointer
@@ -43,37 +41,6 @@ const plugin = {
     })
 
     ctx.restore()
-  },
-  drawPointerLegend: function (chart) {
-    let ctx = chart.ctx
-    let dataPointerOptions = chart.chart.config.options.plugins.dataPointer
-    let legend = chart.legend
-    let lastLegend = legend.legendHitBoxes[legend.legendHitBoxes.length - 1]
-    let font = String()
-    font = font.concat(lastLegend.height, 'px', ' ', dataPointerOptions.fontFamily)
-
-    if (legend.options.display) {
-      ctx.save()
-
-      let yAxis = lastLegend.top
-      let xAxis = lastLegend.left
-
-      if (legend.options.position === 'right' || legend.options.position === 'left') {
-        yAxis = yAxis + lastLegend.height + dataPointerOptions.fontSize + 10
-      } else if (legend.options.position === 'top' || legend.options.position === 'bottom') {
-        xAxis = yAxis + lastLegend.width + dataPointerOptions.fontSize + 10
-      }
-
-      // draw pointer
-      ctx.font = font
-      ctx.fillStyle = dataPointerOptions.defaultColor
-      ctx.textAlign = 'center'
-      ctx.textBaseline = 'middle'
-      ctx.fillText(dataPointerOptions.pointer, xAxis, yAxis)
-      // draw label
-
-      ctx.restore()
-    }
   }
 }
 
