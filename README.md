@@ -16,6 +16,7 @@ plugins: {
 dataPointer: {
 fontFamily: 'FontAwesome',
 pointer: '\uf063',
+position: 'top',
 label: 'Clifford',
 data: ["50", "30", "60"],
 }

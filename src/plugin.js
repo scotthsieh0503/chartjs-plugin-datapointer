@@ -14,6 +14,7 @@ const plugin = {
     let fontSize = options.fontSize
     let fontFamily = options.fontFamily
     let pointer = options.pointer
+    let position = options.position
     let color = options.color
     let defaultColor = options.defaultColor
     let font = String()
@@ -26,7 +27,13 @@ const plugin = {
     // draw pointer
     data.forEach(function (element, index, array) {
       let centerX = xaxis.getPixelForValue(element)
-      let centerY = yaxis.getPixelForTick(index) - (yaxis.options.barThickness / 2) - (fontSize / 2)
+      let centerY = yaxis.getPixelForTick(index)
+      if(position == 'top') {
+        centerY -= (yaxis.options.barThickness / 2) - (fontSize / 2)
+      }
+      if(position == 'bottom') {
+        centerY += (yaxis.options.barThickness / 2) + (fontSize / 2)
+      }
 
       if (Array.isArray(color) && typeof color[index] !== 'undefined') {
         ctx.fillStyle = color[index]
