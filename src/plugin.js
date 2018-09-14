@@ -28,10 +28,10 @@ const plugin = {
     data.forEach(function (element, index, array) {
       let centerX = xaxis.getPixelForValue(element)
       let centerY = yaxis.getPixelForTick(index)
-      if(position == 'top') {
+      if (position === 'top') {
         centerY -= (yaxis.options.barThickness / 2) - (fontSize / 2)
       }
-      if(position == 'bottom') {
+      if (position === 'bottom') {
         centerY += (yaxis.options.barThickness / 2) + (fontSize / 2)
       }
 
