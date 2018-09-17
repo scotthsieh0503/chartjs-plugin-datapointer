@@ -1,6 +1,6 @@
 {
   "name": "chartjs-plugin-datapointer",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "allows chartjs to add arrow pointing to specific data points",
   "main": "dist/chartjs-plugin-datapointer.js",
   "scripts": {

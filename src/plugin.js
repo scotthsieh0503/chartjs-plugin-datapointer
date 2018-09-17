@@ -26,12 +26,13 @@ const plugin = {
 
     // draw pointer
     data.forEach(function (element, index, array) {
+      let barThickness = chart.getDatasetMeta(0).data[index]._view.height
       let centerX = xaxis.getPixelForValue(element)
       let centerY = yaxis.getPixelForTick(index)
       if (position === 'top') {
-        centerY = centerY - (yaxis.options.barThickness / 2) - (fontSize / 2)
+        centerY = centerY - (barThickness / 2) - (fontSize / 2)
       } else if (position === 'bottom') {
-        centerY = centerY + (yaxis.options.barThickness / 2) + (fontSize / 2)
+        centerY = centerY + (barThickness / 2) + (fontSize / 2)
       }
 
       if (Array.isArray(color) && typeof color[index] !== 'undefined') {
