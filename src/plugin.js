@@ -2,7 +2,7 @@
 
 const plugin = {
   id: 'dataPointer',
-  beforeDraw: function (chart) {
+  afterDraw: function (chart) {
     if (chart.chart.config.options.plugins.dataPointer.enable) {
       this.drawPointers(chart)
     }
@@ -29,10 +29,9 @@ const plugin = {
       let centerX = xaxis.getPixelForValue(element)
       let centerY = yaxis.getPixelForTick(index)
       if (position === 'top') {
-        centerY -= (yaxis.options.barThickness / 2) - (fontSize / 2)
-      }
-      if (position === 'bottom') {
-        centerY += (yaxis.options.barThickness / 2) + (fontSize / 2)
+        centerY = centerY - (yaxis.options.barThickness / 2) - (fontSize / 2)
+      } else if (position === 'bottom') {
+        centerY = centerY + (yaxis.options.barThickness / 2) + (fontSize / 2)
       }
 
       if (Array.isArray(color) && typeof color[index] !== 'undefined') {
